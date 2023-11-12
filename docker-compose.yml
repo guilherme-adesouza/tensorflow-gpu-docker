@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  tf-mestrado:
+    image: tensorflow/tensorflow:latest-gpu
+    container_name: tensorflow-mestrado
+    tty: true
+    stdin_open: true
+    working_dir: /app 
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes: 
+     - ./:/app
